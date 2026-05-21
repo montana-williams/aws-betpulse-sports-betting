@@ -20,3 +20,10 @@ variable "certificate_arn" {
   type        = string
   default     = ""
 }
+
+variable "database_password" {
+    description = "Master password for Aurora database"
+    type        = string
+    sensitive   = true
+    default     = "TempPassword123!"
+}

@@ -36,3 +36,14 @@ module "compute" {
      fargate_security_group_id = module.security.fargate_security_group_id
      certificate_arn           = var.certificate_arn
 }
+
+module "database" {
+    source = "./modules/database"
+
+    project_name             = var.project_name
+    environment              = var.environment
+    database_subnet_1_id     = module.vpc.database_subnet_1_id
+    database_subnet_2_id     = module.vpc.database_subnet_2_id
+    aurora_security_group_id = module.security.aurora_security_group_id
+    database_password        = var.database_password
+}

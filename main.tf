@@ -47,3 +47,13 @@ module "database" {
     aurora_security_group_id = module.security.aurora_security_group_id
     database_password        = var.database_password
 }
+
+module "cache" {
+  source = "./modules/cache"
+
+  project_name            = var.project_name
+  environment             = var.environment
+  private_subnet_1_id     = module.vpc.private_subnet_1_id
+  private_subnet_2_id     = module.vpc.private_subnet_2_id
+  redis_security_group_id = module.security.redis_security_group_id
+}

@@ -27,3 +27,10 @@ variable "database_password" {
     sensitive   = true
     default     = "TempPassword123!"
 }
+
+variable "sportradar_api_key" {
+  description = "Sportradar API key for odds feed"
+  type        = string
+  sensitive   = true
+  default     = "placeholder-key"
+}

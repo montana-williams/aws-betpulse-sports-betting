@@ -57,3 +57,10 @@ module "cache" {
   private_subnet_2_id     = module.vpc.private_subnet_2_id
   redis_security_group_id = module.security.redis_security_group_id
 }
+
+module "pipeline" {
+  source = "./modules/pipeline"
+
+  project_name = var.project_name
+  environment  = var.environment
+}

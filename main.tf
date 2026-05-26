@@ -64,3 +64,11 @@ module "pipeline" {
   project_name = var.project_name
   environment  = var.environment
 }
+
+module "monitoring" {
+    source = "./modules/monitoring"
+
+    project_name   = var.project_name
+    environment    = var.environment
+    aws_account_id = var.aws_account_id
+}

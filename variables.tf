@@ -34,3 +34,8 @@ variable "sportradar_api_key" {
   sensitive   = true
   default     = "placeholder-key"
 }
+
+variable "aws_account_id" {
+    description = "AWS account ID"
+    type        = string
+}

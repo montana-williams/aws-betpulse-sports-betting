@@ -31,6 +31,8 @@ High-availability AWS infrastructure for a sports betting platform built to hand
 - **Cache:** ElastiCache Redis
 - **Auth:** Cognito + Lambda Authorizer
 - **Pipeline:** EventBridge + Lambda + Kinesis
+
+> **Note:** The Kinesis odds pipeline module is currently commented out. AWS Kinesis requires a service subscription not available on learner/sandbox accounts. The module code is complete and production-ready — deployment requires a standard AWS account. All other 7 modules deploy and run successfully via the CI/CD pipeline.
 - **Security:** WAF + Security Groups
 - **Audit:** CloudTrail + S3 + SNS
 

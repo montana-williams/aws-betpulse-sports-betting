@@ -58,12 +58,11 @@ module "cache" {
   redis_security_group_id = module.security.redis_security_group_id
 }
 
-module "pipeline" {
-  source = "./modules/pipeline"
-
-  project_name = var.project_name
-  environment  = var.environment
-}
+#module "pipeline" {
+#  source = "./modules/pipeline"
+#
+#  project_name = var.project_name
+#  environment  = var.environment
 
 module "monitoring" {
   source = "./modules/monitoring"

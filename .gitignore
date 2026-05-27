@@ -10,3 +10,4 @@ terraform.zip
 *.tfplan
 awscliv2.zip
 aws/
+terraform.tfvars

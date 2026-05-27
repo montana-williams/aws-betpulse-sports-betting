@@ -8,3 +8,5 @@ terraform.tfstate.backup
 terraform.zip
 .terraform/
 *.tfplan
+awscliv2.zip
+aws/

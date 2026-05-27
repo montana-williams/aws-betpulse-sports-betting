@@ -1,51 +1,51 @@
 module "vpc" {
-    source ="./modules/vpc"
+  source = "./modules/vpc"
 
-    project_name = var.project_name
-    environment  = var.environment
-    aws_region   = var.aws_region
+  project_name = var.project_name
+  environment  = var.environment
+  aws_region   = var.aws_region
 }
 
 module "security" {
-    source = "./modules/security"
+  source = "./modules/security"
 
-    project_name = var.project_name
-    environment  = var.environment
-    vpc_id       = module.vpc.vpc_id
+  project_name = var.project_name
+  environment  = var.environment
+  vpc_id       = module.vpc.vpc_id
 }
 
 module "auth" {
-    source = "./modules/auth"
+  source = "./modules/auth"
 
-    project_name = var.project_name
-    environment  = var.environment
+  project_name = var.project_name
+  environment  = var.environment
 }
 
 module "compute" {
-    source = "./modules/compute"
+  source = "./modules/compute"
 
-     project_name              = var.project_name
-     environment               = var.environment
-     aws_region                = var.aws_region
-     vpc_id                    = module.vpc.vpc_id
-     public_subnet_1_id        = module.vpc.public_subnet_1_id
-     public_subnet_2_id        = module.vpc.public_subnet_2_id
-     private_subnet_1_id       = module.vpc.private_subnet_1_id
-     private_subnet_2_id       = module.vpc.private_subnet_2_id
-     alb_security_group_id     = module.security.alb_security_group_id
-     fargate_security_group_id = module.security.fargate_security_group_id
-     certificate_arn           = var.certificate_arn
+  project_name              = var.project_name
+  environment               = var.environment
+  aws_region                = var.aws_region
+  vpc_id                    = module.vpc.vpc_id
+  public_subnet_1_id        = module.vpc.public_subnet_1_id
+  public_subnet_2_id        = module.vpc.public_subnet_2_id
+  private_subnet_1_id       = module.vpc.private_subnet_1_id
+  private_subnet_2_id       = module.vpc.private_subnet_2_id
+  alb_security_group_id     = module.security.alb_security_group_id
+  fargate_security_group_id = module.security.fargate_security_group_id
+  certificate_arn           = var.certificate_arn
 }
 
 module "database" {
-    source = "./modules/database"
+  source = "./modules/database"
 
-    project_name             = var.project_name
-    environment              = var.environment
-    database_subnet_1_id     = module.vpc.database_subnet_1_id
-    database_subnet_2_id     = module.vpc.database_subnet_2_id
-    aurora_security_group_id = module.security.aurora_security_group_id
-    database_password        = var.database_password
+  project_name             = var.project_name
+  environment              = var.environment
+  database_subnet_1_id     = module.vpc.database_subnet_1_id
+  database_subnet_2_id     = module.vpc.database_subnet_2_id
+  aurora_security_group_id = module.security.aurora_security_group_id
+  database_password        = var.database_password
 }
 
 module "cache" {
@@ -66,9 +66,9 @@ module "pipeline" {
 }
 
 module "monitoring" {
-    source = "./modules/monitoring"
+  source = "./modules/monitoring"
 
-    project_name   = var.project_name
-    environment    = var.environment
-    aws_account_id = var.aws_account_id
+  project_name   = var.project_name
+  environment    = var.environment
+  aws_account_id = var.aws_account_id
 }

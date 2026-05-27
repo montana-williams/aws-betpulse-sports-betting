@@ -1,29 +1,29 @@
 resource "aws_elasticache_subnet_group" "main" {
-    name       = "${var.project_name}-redis-subnet-group"
-    subnet_ids = [var.private_subnet_1_id, var.private_subnet_2_id]
+  name       = "${var.project_name}-redis-subnet-group"
+  subnet_ids = [var.private_subnet_1_id, var.private_subnet_2_id]
 
-    tags = {
-        Name        = "${var.project_name}-redis-subnet-group"
-        Environment = var.environment
-    }
+  tags = {
+    Name        = "${var.project_name}-redis-subnet-group"
+    Environment = var.environment
+  }
 }
 
 resource "aws_elasticache_replication_group" "main" {
-    replication_group_id = "${var.project_name}-redis"
-    description          = "redis cluster for BetPulse"
+  replication_group_id = "${var.project_name}-redis"
+  description          = "redis cluster for BetPulse"
 
-    node_type          = var.redis_node_type
-    num_cache_clusters = 2
-    port               = 6379
+  node_type          = var.redis_node_type
+  num_cache_clusters = 2
+  port               = 6379
 
-    subnet_group_name  = aws_elasticache_subnet_group.main.name
-    security_group_ids = [var.redis_security_group_id]
+  subnet_group_name  = aws_elasticache_subnet_group.main.name
+  security_group_ids = [var.redis_security_group_id]
 
-    at_rest_encryption_enabled = true
-    transit_encryption_enabled = true
+  at_rest_encryption_enabled = true
+  transit_encryption_enabled = true
 
-    tags = {
-        Name        = "${var.project_name}-redis"
-        Environment = var.environment
-    }
+  tags = {
+    Name        = "${var.project_name}-redis"
+    Environment = var.environment
+  }
 }

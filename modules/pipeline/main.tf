@@ -73,15 +73,15 @@ resource "aws_lambda_function" "odds_poller" {
 }
 
 resource "aws_cloudwatch_event_target" "odds_poller" {
-    rule      = aws_cloudwatch_event_rule.odds_poller.name
-    target_id = "OddsPollerLambda"
-    arn       = aws_lambda_function.odds_poller.arn
+  rule      = aws_cloudwatch_event_rule.odds_poller.name
+  target_id = "OddsPollerLambda"
+  arn       = aws_lambda_function.odds_poller.arn
 }
 
 resource "aws_lambda_permission" "eventbridge" {
-    statement_id  = "AllowEventBridgeInvoke"
-    action        = "lambda:InvokeFunction"
-    function_name = aws_lambda_function.odds_poller.function_name
-    principal     = "events.amazonaws.com"
-    source_arn    = aws_cloudwatch_event_rule.odds_poller.arn
+  statement_id  = "AllowEventBridgeInvoke"
+  action        = "lambda:InvokeFunction"
+  function_name = aws_lambda_function.odds_poller.function_name
+  principal     = "events.amazonaws.com"
+  source_arn    = aws_cloudwatch_event_rule.odds_poller.arn
 }

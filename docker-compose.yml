@@ -1,0 +1,9 @@
+services:
+  betpulse:
+    build: .
+    container_name: betpulse-local
+    ports:
+      - "8080:8080"
+    environment:
+      - ENV=local
+    restart: unless-stopped

@@ -1,0 +1,21 @@
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: betpulse-hpa                                # FILL IN: your HPA name
+
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: betpulse                                  # FILL IN: must match your Deployment name
+
+  minReplicas: 2                               # FILL IN: minimum pods always running
+  maxReplicas: 10                              # FILL IN: maximum pods during peak load
+
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: 70               # FILL IN: scale up when avg CPU exceeds this %
